@@ -8,8 +8,6 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "events")
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Event {

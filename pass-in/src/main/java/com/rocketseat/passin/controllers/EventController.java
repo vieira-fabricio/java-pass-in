@@ -1,5 +1,6 @@
 package com.rocketseat.passin.controllers;
 
+import com.rocketseat.passin.domain.event.Event;
 import com.rocketseat.passin.dto.attendee.AttendeeIdDTO;
 import com.rocketseat.passin.dto.attendee.AttendeeRequestDto;
 import com.rocketseat.passin.dto.attendee.AttendeesListResponseDto;
@@ -13,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/events")
 @RequiredArgsConstructor
@@ -20,11 +23,18 @@ public class EventController {
 
     private final EventService service;
     private final AttendeeService attendeeService;
+
     @GetMapping("/{id}")
     public ResponseEntity<EventResponseDto> getEvent(@PathVariable String id) {
         EventResponseDto event = this.service.getEventDetail(id);
         return ResponseEntity.ok(event);
     }
+
+    @GetMapping("/")
+    public List<Event> getAllEvents(){
+        return service.listEvents();
+    }
+
     @PostMapping
     public ResponseEntity<EventIdDto> createEvent(@RequestBody EventRequestDto body, UriComponentsBuilder uriBuilder) {
         EventIdDto eventIdDto = this.service.createEvent(body);
