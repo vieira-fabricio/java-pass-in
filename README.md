@@ -24,9 +24,9 @@ Esta API permite a gestão de eventos, incluindo o cadastro de eventos, registro
 
 | Linguagens de Programação | Ferramentas e Tecnologias |
 | :-----------------: | :-----------------------: |
-| <img height="40" src="https://github.com/vieira-fabricio/icons/blob/main/java.svg"> 
+| <img height="40" src="https://github.com/vieira-fabricio/icons/blob/main/java.svg"> |
   <img height="40" src="https://github.com/vieira-fabricio/icons/blob/main/postgresql.svg"> |
-| <img height="40" src="https://github.com/vieira-fabricio/icons/blob/main/spring.svg">
+| <img height="40" src="https://github.com/vieira-fabricio/icons/blob/main/spring.svg"> |
   <img height="40" src="https://github.com/vieira-fabricio/icons/blob/main/intellij-ide.svg"> |
 |   | <img height="40" src="https://github.com/vieira-fabricio/icons/blob/main/postman-icon-svgrepo-com.svg"> |
   
