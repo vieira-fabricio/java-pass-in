@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "events")
 @AllArgsConstructor
@@ -23,6 +25,8 @@ public class Event {
     private String slug;
     @Column(nullable = false, name = "maximum_attendees")
     private Integer maximumAttendees;
+    @Column(nullable = false, name = "date_hour")
+    private LocalDateTime dateHour;
 
     public String getId() {
         return id;
@@ -62,5 +66,13 @@ public class Event {
 
     public void setMaximumAttendees(Integer maximumAttendees) {
         this.maximumAttendees = maximumAttendees;
+    }
+
+    public LocalDateTime getDateHour() {
+        return dateHour;
+    }
+
+    public void setDateHour(LocalDateTime dateHour) {
+        this.dateHour = dateHour;
     }
 }
