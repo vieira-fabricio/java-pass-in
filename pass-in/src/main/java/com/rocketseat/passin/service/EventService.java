@@ -11,11 +11,11 @@ import com.rocketseat.passin.dto.event.EventRequestDto;
 import com.rocketseat.passin.dto.event.EventResponseDto;
 import com.rocketseat.passin.repositories.EventRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.Normalizer;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -23,6 +23,7 @@ import java.util.List;
 public class EventService {
     private final EventRepository eventRepository;
     private final AttendeeService attendeeService;
+    private final EmailService emailService;
 
     public EventResponseDto getEventDetail(String eventId) {
         Event event = this.getEventById(eventId);
@@ -33,6 +34,7 @@ public class EventService {
     public EventIdDto createEvent(EventRequestDto eventDto) {
         Event newEvent = new Event();
         newEvent.setTitle(eventDto.title());
+        newEvent.setDateHour(eventDto.dateHour());
         newEvent.setDetails(eventDto.details());
         newEvent.setMaximumAttendees(eventDto.maximumAttendees());
         newEvent.setSlug(this.createSlug(eventDto.title()));
@@ -55,7 +57,9 @@ public class EventService {
         newAttendee.setEmail(attendeeRequestDto.email());
         newAttendee.setEvent(event);
         newAttendee.setCreatedAt(LocalDateTime.now());
+
         this.attendeeService.registerAttendee(newAttendee);
+        emailService.sendConfirmationEmail(newAttendee);
 
         return new AttendeeIdDTO(newAttendee.getId());
     }

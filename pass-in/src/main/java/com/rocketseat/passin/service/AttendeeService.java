@@ -11,6 +11,7 @@ import com.rocketseat.passin.dto.attendee.AttendeeBadgetDTO;
 import com.rocketseat.passin.repositories.AttendeeRepository;
 import com.rocketseat.passin.repositories.CheckInRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -24,6 +25,9 @@ public class AttendeeService {
 
     private final AttendeeRepository attendeeRepository;
     private final CheckInService checkInService;
+
+    @Autowired
+    private EmailService emailService;
 
     public List<Attendee> getAllAttendeesFromEvent(String eventId) {
         return this.attendeeRepository.findByEventId(eventId);

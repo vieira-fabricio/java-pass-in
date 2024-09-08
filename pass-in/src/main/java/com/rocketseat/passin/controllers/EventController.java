@@ -24,6 +24,7 @@ public class EventController {
     private final EventService service;
     private final AttendeeService attendeeService;
 
+
     @GetMapping("/{id}")
     public ResponseEntity<EventResponseDto> getEvent(@PathVariable String id) {
         EventResponseDto event = this.service.getEventDetail(id);
@@ -46,7 +47,7 @@ public class EventController {
     @PostMapping("/{eventId}/attendees")
     public ResponseEntity<AttendeeIdDTO> registerParticipant(@PathVariable String eventId, @RequestBody AttendeeRequestDto body, UriComponentsBuilder uriBuilder) {
         AttendeeIdDTO attendeeIdDTO = this.service.registerAttendeeOnEvent(eventId, body);
-        System.out.println(attendeeIdDTO);
+
 
         var uri = uriBuilder.path("/attendees/{attendId}/badge").buildAndExpand(attendeeIdDTO.attendeeId()).toUri();
 
